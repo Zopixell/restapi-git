@@ -175,6 +175,28 @@
                         });
                     }
                     break;
+                    case "post":
+                    if(tabela=="radio_novosti"){
+                        var values = {
+                            "naslov": $("input[name=naslov_novosti]").val(),
+                            "tekst":$("#tekst_novosti").val(),
+                            "kategorija_id": parseInt($("#kategorija_odabir").val())
+                        };
+                        console.log(values);
+                        $.post("http://localhost:8080/rest/rest/novosti", JSON.stringify(values),function(data){
+                            alert("Odgovor od servera> "+data['poruka']);
+                        });
+                    }else{
+                        var values ={
+                            "kategorija": $("input[name=kategorija_naziv]").val(),
+                        }
+                        console.log(values);
+                        $.post("http://localhost:8080/rest/rest/kategorije", JSON.stringify(values),function(data){
+                            alert("Odgovor od servera> "+data['poruka']);
+                        });
+
+                    }
+                    break;
                
             }
         }
