@@ -197,7 +197,62 @@
 
                     }
                     break;
-               
+                    case "put":
+                if(tabela=="radio_novosti"){
+                        var values1 = {
+                            "naslov": $("input[name=naslov_novosti_put]").val(),
+                            "tekst":$("#tekst_novosti_put").val(),
+                            "kategorija_id": parseInt($("#kategorija_odabir_put").val())
+                        };
+
+                        var id= $("input[name=id_novosti]").val();
+                        var url1="http://localhost:8080/rest/rest/novosti/"+id;
+                        console.log(values1);
+                        console.log(id);
+                        console.log(url1);
+
+                        $.ajax({
+                            type:"PUT",
+                            url:url1,
+                            contentType: 'application/json',
+                            data: JSON.stringify(values1),
+                            success: function (data, textStatus, xhr) {  
+                              console.log(data);  
+                             },  
+                             error: function (xhr, textStatus, errorThrown) {  
+                             console.log('Error in Operation');  
+                            }  
+                        });
+
+                    }else{
+                        var values2 ={
+                            "kategorija": $("input[name=kategorija_naziv_put]").val(),
+                        }
+                        var id= $("input[name=id_kategorije]").val();
+                        var url1="http://localhost:8080/rest/rest/kategorije/"+id;
+                        console.log(values2);
+                        console.log(id);
+                        console.log(url1);
+                        
+                        $.ajax({
+                            type:"PUT",
+                            url:url1,
+                            contentType: 'application/json',
+                            data: JSON.stringify(values2),
+                            success: function (data, textStatus, xhr) {  
+                              console.log(data);  
+                             },  
+                             error: function (xhr, textStatus, errorThrown) {  
+                             console.log('Error in Operation');  
+                            }  
+                        });
+
+                    }
+                    break;
+                    case "delete":
+                    
+                default:
+                    console.log("default");
             }
         }
     }
