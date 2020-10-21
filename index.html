@@ -160,4 +160,22 @@
            skloniBlokove();
            $("input[name=http_zahtev]").prop('checked', false);}
 
-           
+           function posaljiZahtev(){
+        if($("input[name=odabir_tabele]:checked").length!=0 && $("input[name=http_zahtev]:checked").length!=0){
+            var tabela = $("input[name=odabir_tabele]:checked")[0].id;
+            switch ( $("input[name=http_zahtev]:checked")[0].id){
+                case "get":
+                    if(tabela=="radio_novosti"){
+                        $.getJSON("http://localhost:8080/rest/rest/novosti", function(data){
+                            document.getElementById("get_odgovor").innerHTML = JSON.stringify(data,null,2);
+                        });
+                    }else{
+                        $.getJSON("http://localhost:8080/rest/rest/kategorije", function(data){
+                            document.getElementById("get_odgovor").innerHTML = JSON.stringify(data,null,2);
+                        });
+                    }
+                    break;
+               
+            }
+        }
+    }
