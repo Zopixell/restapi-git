@@ -233,7 +233,7 @@
                         console.log(values2);
                         console.log(id);
                         console.log(url1);
-                        
+
                         $.ajax({
                             type:"PUT",
                             url:url1,
@@ -250,7 +250,39 @@
                     }
                     break;
                     case "delete":
-                    
+                    if(tabela=="radio_novosti"){
+                        var id= $("input[name=brisanje]").val();
+                        var url2="http://localhost:8080/rest/rest/novosti/"+id;
+                        console.log(id);
+                        console.log(url2);
+                        $.ajax({
+                            type:"DELETE",
+                            url:url2,
+                            success: function (data, textStatus, xhr) {  
+                              console.log(data);  
+                             },  
+                             error: function (xhr, textStatus, errorThrown) {  
+                             console.log('Error in Operation');  
+                            }  
+                        });
+
+                    }else{
+                        var id= $("input[name=brisanje]").val();
+                        var url2="http://localhost:8080/rest/rest/kategorije/"+id;
+                        console.log(id);
+                        console.log(url2);
+                        $.ajax({
+                            type:"DELETE",
+                               url:url2,
+                        success: function (data, textStatus, xhr) {  
+                            console.log(data);  
+                          },  
+                        error: function (xhr, textStatus, errorThrown) {  
+                             console.log('Error in Operation');  
+                      }  
+              });
+                    }
+                    break;
                 default:
                     console.log("default");
             }
